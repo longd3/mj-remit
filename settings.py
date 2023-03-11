@@ -35,7 +35,7 @@ SLOGAN = extract_secret("SLOGAN")
 
 # Global params
 BROADCAST_AND_PERSIST_ENABLED = False
-USE_MESSAGED_CHANNEL = True # if True then in case of private channel: MJR has to be invited to
+USE_MESSAGED_CHANNEL = True # if True then in case of private channel: MJR has to be invited to & permissions to post
 TARGET_ID = ""
 TARGET_HASH = ""
 DISCORD_INTERACTIONS_URL="https://discord.com/api/v9/interactions"
