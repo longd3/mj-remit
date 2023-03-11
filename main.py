@@ -25,6 +25,8 @@ async def whisper(ctx, sentence: discord.Option(str)):
 async def lucky_imagine(ctx, prompt: discord.Option(str)):
     if settings.USE_MESSAGED_CHANNEL:
         settings.DISCORD_CHANNEL_ID = ctx.channel.id
+        settings.DISCORD_SERVER_ID = ctx.guild.id
+        
     if "@" in prompt:
         await ctx.respond(f"{settings.LOG_PREFIX} **@** is a reserved character, pls avoid it")
     else:
@@ -47,6 +49,8 @@ async def lucky_upscale(ctx, index: discord.Option(int), clear_target: discord.O
 
     if settings.USE_MESSAGED_CHANNEL:
         settings.DISCORD_CHANNEL_ID = ctx.channel.id
+        settings.DISCORD_SERVER_ID = ctx.guild.id
+        
     response = upscale(index, settings.TARGET_ID, settings.TARGET_HASH)
     if clear_target:
         settings.TARGET_ID = ""
@@ -65,6 +69,7 @@ async def lucky_upscale_to_max(ctx, clear_target: discord.Option(bool) = False):
 
     if settings.USE_MESSAGED_CHANNEL:
         settings.DISCORD_CHANNEL_ID = ctx.channel.id
+        settings.DISCORD_SERVER_ID = ctx.guild.id
 
     response = upscale_max(settings.TARGET_ID, settings.TARGET_HASH)
     if clear_target:
@@ -83,6 +88,7 @@ async def lucky_reroll(ctx, clear_target: discord.Option(bool) = False):
 
     if settings.USE_MESSAGED_CHANNEL:
         settings.DISCORD_CHANNEL_ID = ctx.channel.id
+        settings.DISCORD_SERVER_ID = ctx.guild.id
 
     response = reroll(settings.TARGET_ID, settings.TARGET_HASH)
     if clear_target:
@@ -106,6 +112,7 @@ async def lucky_variate(ctx, index: discord.Option(int), clear_target: discord.O
 
     if settings.USE_MESSAGED_CHANNEL:
         settings.DISCORD_CHANNEL_ID = ctx.channel.id
+        settings.DISCORD_SERVER_ID = ctx.guild.id
 
     response = variate(index, settings.TARGET_ID, settings.TARGET_HASH)
     if clear_target:
