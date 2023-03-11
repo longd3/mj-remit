@@ -4,12 +4,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+MJR_SECRETS = {}
 
-consul_client = consul.Consul(scheme="https", port=443,
-                              host=os.getenv("CONSUL_URL").split("https://")[-1],
-                              token=os.getenv("CONSUL_TOKEN"))
-
-MJR_SECRETS = json.loads(consul_client.kv.get(os.getenv('CONSUL_PREFIX'))[1].get('Value').decode('UTF-8'))
+try:
+    consul_client = consul.Consul(scheme="https", port=443,
+                                  host=os.getenv("CONSUL_URL").split("https://")[-1],
+                                  token=os.getenv("CONSUL_TOKEN"))
+    MJR_SECRETS = json.loads(consul_client.kv.get(os.getenv('CONSUL_PREFIX'))[1].get('Value').decode('UTF-8'))
+except Exception as e:
+    print(f"Consul is unavailable because {e}\nIt's okay, using your .env")
 
 def extract_secret(key, secrets=MJR_SECRETS):
     # first priority: local env vars & .env
