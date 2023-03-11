@@ -30,8 +30,9 @@ a Discord bot that serves as
   ```
 - Run within a container
   ```bash
-  docker run -d -ti --name mj-remit-prod --restart=always --env-file=.env --network="host" mj-remit:latest 
-- ```
+  docker run -d -ti --name mj-remit-prod --restart=always --env-file=.env --network="host" mj-remit:latest
+  ```
+
 ### DEVOPS NOTES
 - I use [consul](https://www.consul.io/) as the secret keeper here (check the example) but apparently you can run with your .env so please ignore the consul-example.json and .env-with-consul.example if not applicable
 - More work needs to be done to handle the queue limits stated in Midjourney Standard/Pro plan https://docs.midjourney.com/docs/plans
